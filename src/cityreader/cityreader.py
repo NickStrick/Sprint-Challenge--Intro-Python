@@ -1,7 +1,5 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
-
-
 import csv
 
 
@@ -92,4 +90,25 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # Go through each city and check to see if it falls within
     # the specified coordinates.
 
+    if lat2 < lat1:
+        a = lat1
+        lat1 = lat2
+        lat2 = a
+    if lon2 < lon1:
+        a = lon1
+        lon1 = lon2
+        lon2 = a
+    lat1 = int(lat1)
+    lon1 = int(lon1)
+    lat2 = int(lat2)
+    lon2 = int(lon2)
+    for c in cities:
+        if int(c.lat) in range(lat1, lat2) and int(c.lon) in range(lon1, lon2):
+            within.append(c)
     return within
+
+
+hasCity = cityreader_stretch(45, -100, 32, -120, cities)
+print('\ncityreader stretch\n')
+for c in hasCity:
+    print(c)
